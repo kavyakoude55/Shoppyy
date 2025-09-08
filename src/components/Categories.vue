@@ -17,19 +17,18 @@
                 </div>
 
                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent">
-                    <div class="absolute-0 bottom-0 left-0 p-6">
-                     <router-link 
-                        :to="{ name: 'products', query: { category: category.slug } }"
+                    <router-link 
+                        :to="{ path: '/products', query: { category: category.slug } }"
                         class="text-xl font-semibold text-white hover:text-black"
                         >
                         {{ category.title }}
                     </router-link>
-                            <p class="text-gray-200 mt-1 hover:text-black">{{ category.description }}</p>
+                    <p class="text-gray-200 mt-1 hover:text-black">{{ category.description }}</p>
                     </div>
                 </div>
             </div>
             </div>
-        </div>
+      
    </section>
 </template>
 <script setup>

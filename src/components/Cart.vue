@@ -99,6 +99,7 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
 import { Icon } from "@iconify/vue";
 import { useCartStore } from "../stores/Cart";
 
@@ -140,8 +141,6 @@ const products = ref([
     {id: 6, name: 'Floral', price: 99.99, rating: 4.5, Image: women6, discount: 20, category: "Women"},
     {id: 7, name: 'Flowry', price: 99.99, rating: 4.8, Image: perfume1, discount: 15, category: "Perfume"},
     {id: 8, name: 'Levrey', price: 99.99, rating: 4.2, Image: women7, discount: 25, category: "Women"},
-    {id: 9, name: 'Floral', price: 99.99, rating: 4.5, Image: kid1, discount: 20, category: "Kids"},
-    {id: 10, name: 'Floral', price: 99.99, rating: 4.5, Image: kid2, discount: 20, category: "Kids"},
     {id:11, name: 'lawrey', price: 99.99, rating: 4.3, Image: perfume2, discount: 27, category: "Perfume"},
     {id: 12, name: 'polaru', price: 99.99, rating: 4.9, Image: women8, discount: 12, category: "Women"},
     {id: 13, name: 'Floral', price: 99.99, rating: 4.5, Image: women9, discount: 20, category: "Women"},
@@ -149,12 +148,7 @@ const products = ref([
     {id: 15, name: 'pooluru', price: 99.99, rating: 4.7, Image: perfume3, discount: 18, category: "Perfume"},
     {id: 16, name: 'Floral', price: 99.99, rating: 4.5, Image: men1, discount: 20, category: "Men"},
     {id: 17, name: 'Floral', price: 99.99, rating: 4.5, Image: men2, discount: 20, category: "Men"},
-    {id: 18, name: 'Floral', price: 99.99, rating: 4.5, Image: accesory1, discount: 20, category: "Accesories"},
-    {id: 19, name: 'Floral', price: 99.99, rating: 4.5, Image: bag1, discount: 20, category: "Bags"},
     {id: 20, name: 'Floral', price: 99.99, rating: 4.5, Image: men3, discount: 20, category: "Men"},
-    {id: 21, name: 'Floral', price: 99.99, rating: 4.5, Image: jwellery2, discount: 20, category: "Jwellery"},
-    {id: 22, name: 'Floral', price: 99.99, rating: 4.5, Image: footwear1, discount: 20, category: "Footwear"},
-    {id: 23, name: 'Floral', price: 99.99, rating: 4.5, Image: footwear2, discount: 20, category: "Footwear"},
     {id: 24, name: 'Floral', price: 99.99, rating: 4.5, Image: men4, discount: 20, category: "Men"},
     {id: 25, name: 'Floral', price: 99.99, rating: 4.5, Image: women11, discount: 20, category: "Women"},
     {id: 26, name: 'Floral', price: 99.99, rating: 4.5, Image: women12, discount: 20, category: "Women"},
