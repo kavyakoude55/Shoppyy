@@ -109,15 +109,23 @@ import perfume1 from '../assets/perfume/perfume1.jpg';
 import women2 from '../assets/women/women2.jpeg';
 import perfume2 from '../assets/perfume/perfume2.jpg';
 import women3 from '../assets/women/women3.jpeg';
+import kid1 from '../assets/kids/kid1.jpeg';
+
 import women4 from '../assets/women/women4.jpeg';
+
 import women5 from '../assets/women/women5.jpeg';
+
 import women6 from '../assets/women/women6.jpeg';
+
 import women7 from '../assets/women/women7.jpeg';
+
 import women8 from '../assets/women/women8.jpeg';
 import women9 from '../assets/women/women9.jpeg';
 import women10 from '../assets/women/women10.jpeg';
+
 import women11 from '../assets/women/women11.jpeg';
 import women12 from '../assets/women/women12.jpeg';
+
 import women13 from '../assets/women/women13.jpeg';
 import women14 from '../assets/women/women14.jpeg';
 import women15 from '../assets/women/women15.jpeg';
@@ -136,7 +144,7 @@ const productsPerPage = ref(4)
 
 const products = ref([
     {id: 7, name: 'Flowry', price: 99.99, rating: 4.8, Image: perfume1, discount: 15, category: "Perfume"},
-    
+    {id: 9, name: 'Levrey', price: 99.99, rating: 4.2, Image: kid1, discount: 25, category: "kids"},
     
     {id:11, name: 'lawrey', price: 99.99, rating: 4.3, Image: perfume2, discount: 27, category: "Perfume"},
     {id: 15, name: 'pooluru', price: 99.99, rating: 4.7, Image: perfume3, discount: 18, category: "Perfume"},
@@ -187,18 +195,26 @@ const currentSlide = ref(0);
 
 const filteredProducts = computed(() => {
   if (!products.value) return []
-  if (!selectedCategory.value) return products.value
+
+  if (selectedCategory.value === "All") return products.value
+
   return products.value.filter(
     product => product.category === selectedCategory.value
   )
 })
 
 
+
 const visibleProducts = computed(() => {
+
+  if (selectedCategory.value === "All") {
+    return filteredProducts.value;
+  }
+
+
   const start = currentSlide.value * productsPerPage.value;
   return filteredProducts.value.slice(start, start + productsPerPage.value);
 });
-
 
 onMounted(() => {
   if (route.query?.category) {
@@ -224,7 +240,7 @@ const handleResize = () => {
         productsPerPage.value = 3;
     }
     else{
-        productsPerPage.value = 4;
+        productsPerPage.value = 6;
     }
 }
 onMounted(() => {
