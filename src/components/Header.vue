@@ -3,23 +3,17 @@
     <section
       :class="[
         'w-full',
-        isScrolled
-          ? 'bg-gray-800 backdrop-blur-xl shadow-md'
-          : 'bg-gray-700'
+        isScrolled ? 'bg-gray-800 backdrop-blur-xl shadow-md' : 'bg-gray-700'
       ]"
     >
       <div class="flex items-center justify-between px-4 py-3 md:px-8">
-        <a
-          href="/"
-          class="text-2xl font-extrabold text-pink-600 hover:text-pink-300"
-        >
+        <!-- Logo -->
+        <a href="/" class="text-2xl font-extrabold text-pink-600 hover:text-pink-300">
           Shoppy
         </a>
 
-        <nav
-          class="hidden md:flex gap-6 items-center  space-x-8"
-          aria-label="Main navigation"
-        >
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex gap-6 items-center space-x-8" aria-label="Main navigation">
           <router-link
             v-for="item in navItems"
             :key="item.id"
@@ -30,60 +24,65 @@
           </router-link>
         </nav>
 
-         <div class="space-x-9 flex gap-5 items-right">
-          <router-link v-if="!user" to="/login" >Login</router-link>
-          <router-link v-if="!user" to="/signup">Signup</router-link>
-          <button v-if="user" @click="logout" class="bg-red-500 text-white px-3 py-1 rounded">
-            Logout
-          </button>
-         </div>
+        <!-- Right Section: Login / User / Cart / Wishlist -->
+        <div class="flex items-center space-x-4 relative">
+          <!-- Cart -->
+          <router-link to="/cart" class="relative p-2 text-gray-200 hover:text-pink-400" aria-label="cart">
+            <Icon icon="mdi:cart-outline" class="w-5 h-5" />
+            <span
+              v-if="cart.itemCount > 0"
+              class="absolute -top-1 -right-1 bg-pink-600 text-white text-xs font-bold rounded-full px-1.5"
+            >
+              {{ cart.itemCount }}
+            </span>
+          </router-link>
 
-        <div class="flex items-center space-x-4">
-          <!-- Search -->
-          <form
-            class="hidden md:block w-48 lg:w-64"
-            role="search"
-            aria-label="Site search"
-          >
-            <label class="relative w-full">
-              <input
-                type="search"
-                placeholder="search..."
-                class="w-full px-3 py-2 text-xs border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-pink-400"
-              />
-              <button
-                type="submit"
-                class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-pink-400"
-              >
-                <Icon icon="mdi:magnify" class="w-4 h-4" />
-              </button>
-            </label>
-          </form>
+          <!-- Wishlist -->
+          <router-link to="/wishlist" class="relative p-2 text-gray-200 hover:text-pink-400" aria-label="wishlist">
+            <Icon icon="mdi:heart-outline" class="w-5 h-5" />
+            <span
+              v-if="wishlist.itemCount > 0"
+              class="absolute -top-1 -right-1 bg-pink-600 text-white text-xs font-bold rounded-full px-1.5"
+            >
+              {{ wishlist.itemCount }}
+            </span>
+          </router-link>
 
-    
-<router-link to="/wishlist" class="relative p-2 text-gray-200 hover:text-pink-400" aria-label="wishlist">
-  <Icon icon="mdi:heart-outline" class="w-5 h-5" />
-  <span
-    v-if="wishlist.itemCount > 0"
-    class="absolute -top-1 -right-1 bg-pink-600 text-white text-xs font-bold rounded-full px-1.5"
-  >
-    {{ wishlist.itemCount }}
-  </span>
-</router-link>
+          <!-- User Dropdown -->
+          <div class="relative">
+            <button @click="toggleUserDropdown" class="p-2 text-gray-200 hover:text-pink-400" aria-label="account">
+              <Icon icon="mdi:account-outline" class="w-5 h-5" />
+            </button>
 
- <router-link to="/cart" class="relative p-2 text-gray-200 hover:text-pink-400" aria-label="cart">
-          <Icon icon="mdi:cart-outline" class="w-5 h-5" />
-          <span
-            v-if="cart.itemCount > 0"
-            class="absolute -top-1 -right-1 bg-pink-600 text-white text-xs font-bold rounded-full px-1.5"
-          >
-            {{ cart.itemCount }}
-          </span>
-        </router-link>
-          <!-- Account -->
-          <button class="p-2 text-gray-200 hover:text-pink-400" aria-label="account">
-            <Icon icon="mdi:account-outline" class="w-5 h-5" />
-          </button>
+            <div
+              v-if="isUserDropdownOpen"
+              class="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-md py-2 z-50"
+            >
+              <template v-if="user">
+                <div class="flex flex-col items-center px-4 py-2 border-b">
+                  <img
+                    v-if="user.photoURL"
+                    :src="user.photoURL"
+                    alt="Profile"
+                    class="w-12 h-12 rounded-full mb-2"
+                  />
+                  <span class="font-medium text-gray-800">{{ user.displayName || user.email }}</span>
+                  <span class="text-xs text-gray-500">{{ user.email }}</span>
+                </div>
+                <button
+                  @click="handleLogout"
+                  class="w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100"
+                >
+                  Logout
+                </button>
+              </template>
+
+              <template v-else>
+                <router-link to="/login" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Login</router-link>
+                <router-link to="/signup" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Signup</router-link>
+              </template>
+            </div>
+          </div>
 
           <!-- Mobile menu toggle -->
           <button
@@ -97,10 +96,7 @@
       </div>
 
       <!-- Mobile Menu -->
-      <div
-        v-if="isMobileMenuOpen"
-        class="md:hidden bg-white shadow-md rounded-b-lg px-6 py-4 space-y-4"
-       >
+      <div v-if="isMobileMenuOpen" class="md:hidden bg-white shadow-md rounded-b-lg px-6 py-4 space-y-4">
         <form role="search" aria-label="Mobile search">
           <label class="relative w-full">
             <input
@@ -108,10 +104,7 @@
               placeholder="search..."
               class="w-full px-3 py-2 text-sm border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-pink-400"
             />
-            <button
-              type="submit"
-              class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-pink-500"
-            >
+            <button type="submit" class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-pink-500">
               <Icon icon="mdi:magnify" class="w-4 h-4" />
             </button>
           </label>
@@ -128,13 +121,17 @@
             {{ item.name }}
           </router-link>
 
-          <div class="space-x-9 flex gap-5 items-right">
-          <router-link v-if="!user" to="/login" >Login</router-link>
-          <router-link v-if="!user" to="/signup">Signup</router-link>
-          <button v-if="user" @click="handleLogout()" class="bg-red-500 text-white px-3 py-1 rounded">
-            Logout
-          </button>
-         </div>
+          <div class="flex flex-col items-center gap-2 mt-2">
+            <template v-if="user">
+              <img v-if="user.photoURL" :src="user.photoURL" class="w-10 h-10 rounded-full mb-1" />
+              <span class="text-gray-700">{{ user.email }}</span>
+              <button @click="handleLogout" class="bg-red-500 text-white px-4 py-1 rounded mt-1">Logout</button>
+            </template>
+            <template v-else>
+              <router-link to="/login" class="bg-green-500 text-white px-4 py-1 rounded mb-1">Login</router-link>
+              <router-link to="/signup" class="bg-green-500 text-white px-4 py-1 rounded">Signup</router-link>
+            </template>
+          </div>
         </div>
       </div>
     </section>
@@ -144,18 +141,18 @@
 <script setup>
 import { Icon } from "@iconify/vue";
 import { ref, onMounted, onUnmounted } from "vue";
-import { useRouter } from 'vue-router';
-import { useCartStore } from '../stores/Cart';
-import { useWishlistStore } from '../stores/WishList';
-import { useAuth } from '../composables/useAuth';
+import { useRouter } from "vue-router";
+import { useCartStore } from "../stores/Cart";
+import { useWishlistStore } from "../stores/WishList";
+import { useAuth } from "../composables/useAuth";
 
-
-const router = useRouter();      
-const { user, logout, initAuth} = useAuth();
-
+const router = useRouter();
+const { user, logout, initAuth } = useAuth();
 initAuth();
+
 const isScrolled = ref(false);
 const isMobileMenuOpen = ref(false);
+const isUserDropdownOpen = ref(false);
 
 const navItems = [
   { id: 1, name: "Home", link: "home" },
@@ -181,9 +178,13 @@ onUnmounted(() => {
 const cart = useCartStore();
 const wishlist = useWishlistStore();
 
-// Mobile menu logout handler
+// Handlers
 const handleLogout = () => {
   logout();
-  router.push('/Login');   // Navigate after logout
+  router.push("/login");
+};
+
+const toggleUserDropdown = () => {
+  isUserDropdownOpen.value = !isUserDropdownOpen.value;
 };
 </script>
