@@ -12,6 +12,9 @@ const { login, error } = useAuth();
 async function handleLogin() {
   try {
     await login(email.value, password.value);
+    email.value = "";
+    password.value = "";
+    
     router.push("/"); 
   } catch (err) {
     console.error(err);
