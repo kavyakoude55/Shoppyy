@@ -109,7 +109,7 @@ import perfume1 from '../assets/perfume/perfume1.jpg';
 import women2 from '../assets/women/women2.jpeg';
 import perfume2 from '../assets/perfume/perfume2.jpg';
 import women3 from '../assets/women/women3.jpeg';
-import kid1 from '../assets/kids/kid1.jpeg';
+import kid1 from '../assets/kids/kids1.jpeg';
 
 import women4 from '../assets/women/women4.jpeg';
 
@@ -137,17 +137,47 @@ import men2 from '../assets/men/men2.jpeg';
 import men3 from '../assets/men/men3.jpeg';
 import men4 from '../assets/men/men4.jpeg';
 import perfume3 from '../assets/perfume/perfume3.jpg';
+import perfume4 from '../assets/perfume/perfume4.jpg';
+import perfume5 from '../assets/perfume/perfume5.jpg';
+import perfume6 from '../assets/perfume/perfume6.jpg';
+import perfume7 from '../assets/perfume/perfume7.jpeg';
+import perfume8 from '../assets/perfume/perfume8.jpeg';
+import perfume9 from '../assets/perfume/perfume9.jpeg';
+import perfume10 from '../assets/perfume/perfume10.jpeg';
+import perfume11 from '../assets/perfume/perfume11.jpeg';
+import perfume12 from '../assets/perfume/perfume12.jpeg';
+import perfume13 from '../assets/perfume/perfume13.jpeg';
+import perfume14 from '../assets/perfume/perfume14.jpg';
+import kids1 from '../assets/kids/kids1.jpeg';
+import kids2 from '../assets/kids/kids2.jpeg';  
+import kids3 from '../assets/kids/kids3.jpeg';
+import kids4 from '../assets/kids/kids4.jpeg';  
+import kids5 from '../assets/kids/kids5.jpeg';
+import kids6 from '../assets/kids/kids6.jpeg';
+import kids7 from '../assets/kids/kids7.jpeg';
+import kids8 from '../assets/kids/kids8.jpeg';
+import kids9 from '../assets/kids/kids9.jpeg';
+import kids10 from '../assets/kids/kids10.jpeg';
+import kids11 from '../assets/kids/kids11.jpeg';
+import kids12 from '../assets/kids/kids12.jpeg';
 
+import footwear1 from '../assets/footwear/footwear1.jpeg';
+import footwear2 from '../assets/footwear/footwear2.jpeg';
+import footwear3 from '../assets/footwear/footwear3.jpeg';
+import footwear4 from '../assets/footwear/footwear4.jpeg';
+import footwear5 from '../assets/footwear/footwear5.jpeg';
+import footwear6 from '../assets/footwear/footwear6.jpeg';
+import footwear7 from '../assets/footwear/footwear7.jpeg';
+import footwear8 from '../assets/footwear/footwear8.jpeg';
+import footwear9 from '../assets/footwear/footwear9.jpeg';
+import footwear10 from '../assets/footwear/footwear10.jpeg';
 
 
 const productsPerPage = ref(4)
 
 const products = ref([
-    {id: 7, name: 'Flowry', price: 99.99, rating: 4.8, Image: perfume1, discount: 15, category: "Perfume"},
     {id: 9, name: 'Levrey', price: 99.99, rating: 4.2, Image: kid1, discount: 25, category: "kids"},
     
-    {id:11, name: 'lawrey', price: 99.99, rating: 4.3, Image: perfume2, discount: 27, category: "Perfume"},
-    {id: 15, name: 'pooluru', price: 99.99, rating: 4.7, Image: perfume3, discount: 18, category: "Perfume"},
     {id: 16, name: 'Floral', price: 99.99, rating: 4.5, Image: men1, discount: 20, category: "Men"},
     {id: 17, name: 'Floral', price: 99.99, rating: 4.5, Image: men2, discount: 20, category: "Men"},
  
@@ -178,7 +208,51 @@ const products = ref([
     {id: 31, name: 'Floral', price: 99.99, rating: 4.5, Image: women17, discount: 20, category: "Women"},
     {id: 32, name: 'Floral', price: 99.99, rating: 4.5, Image: women18, discount: 20, category: "Women"},
 
+
+    //kids
+
+    {id: 10, name: 'Levrey', price: 99.99, rating: 4.2, Image: kids1, discount: 25, category: "Kids"},
+    {id: 18, name: 'Levrey', price: 99.99, rating: 4.2, Image: kids2, discount: 25, category: "Kids"},
+    {id: 19, name: 'Levrey', price: 99.99, rating: 4.2, Image: kids3, discount: 25, category: "Kids"},
+    {id: 21, name: 'Levrey', price: 99.99, rating: 4.2, Image: kids4, discount: 25, category: "Kids"},
+    {id: 22, name: 'Levrey', price: 99.99, rating: 4.2, Image: kids5, discount: 25, category: "Kids"},
+    {id: 23, name: 'Levrey', price: 99.99, rating: 4.2, Image: kids6, discount: 25, category: "Kids"},
+    {id: 33, name: 'Levrey', price: 99.99, rating: 4.2, Image: kids7, discount: 25, category: "Kids"},          
+    {id: 34, name: 'Levrey', price: 99.99, rating: 4.2, Image: kids8, discount: 25, category: "Kids"},
+    {id: 35, name: 'Levrey', price: 99.99, rating: 4.2, Image: kids9, discount: 25, category: "Kids"},
+    {id: 36, name: 'Levrey', price: 99.99, rating: 4.2, Image: kids10, discount: 25, category: "Kids"},
+    {id: 37, name: 'Levrey', price: 99.99, rating: 4.2, Image: kids11, discount: 25, category: "Kids"},
+    {id: 38, name: 'Levrey', price: 99.99, rating: 4.2, Image: kids12, discount: 25, category: "Kids"},
+
+    //footwear
+
+    {id: 39, name: 'Levrey', price: 99.99, rating: 4.2, Image: footwear1, discount: 25, category: "Footwear"},
+    {id: 40, name: 'Levrey', price: 99.99, rating: 4.2, Image: footwear2, discount: 25, category: "Footwear"},
+    {id: 41, name: 'Levrey', price: 99.99, rating: 4.2, Image: footwear3, discount: 25, category: "Footwear"},
+    {id: 42, name: 'Levrey', price: 99.99, rating: 4.2, Image: footwear4, discount: 25, category: "Footwear"},  
+    {id: 43, name: 'Levrey', price: 99.99, rating: 4.2, Image: footwear5, discount: 25, category: "Footwear"},
+    {id: 44, name: 'Levrey', price: 99.99, rating: 4.2, Image: footwear6, discount: 25, category: "Footwear"},
+    {id: 45, name: 'Levrey', price: 99.99, rating: 4.2, Image: footwear7, discount: 25, category: "Footwear"},
+    {id: 46, name: 'Levrey', price: 99.99, rating: 4.2, Image: footwear8, discount: 25, category: "Footwear"},
+    {id: 47, name: 'Levrey', price: 99.99, rating: 4.2, Image: footwear9, discount: 25, category: "Footwear"},
+    {id: 48, name: 'Levrey', price: 99.99, rating: 4.2, Image: footwear10, discount: 25, category: "Footwear"},
+
+    //perfume
     
+    {id:11, name: 'lawrey', price: 99.99, rating: 4.3, Image: perfume2, discount: 27, category: "Perfume"},
+    {id: 15, name: 'pooluru', price: 99.99, rating: 4.7, Image: perfume3, discount: 18, category: "Perfume"},
+    {id: 7, name: 'Flowry', price: 99.99, rating: 4.8, Image: perfume1, discount: 15, category: "Perfume"},
+    {id: 49, name: 'Flowry', price: 99.99, rating: 4.8, Image: perfume4, discount: 15, category: "Perfume"},
+    {id: 50, name: 'Flowry', price: 99.99, rating: 4.8, Image: perfume5, discount: 15, category: "Perfume"},
+    {id: 51, name: 'Flowry', price: 99.99, rating: 4.8, Image: perfume6, discount: 15, category: "Perfume"},
+    {id: 52, name: 'Flowry', price: 99.99, rating: 4.8, Image: perfume7, discount: 15, category: "Perfume"},
+    {id: 53, name: 'Flowry', price: 99.99, rating: 4.8, Image: perfume8, discount: 15, category: "Perfume"},
+    {id: 54, name: 'Flowry', price: 99.99, rating: 4.8, Image: perfume9, discount: 15, category: "Perfume"},
+    {id: 55, name: 'Flowry', price: 99.99, rating: 4.8, Image: perfume10, discount: 15, category: "Perfume"},
+    {id: 56, name: 'Flowry', price: 99.99, rating: 4.8, Image: perfume11, discount: 15, category: "Perfume"},
+    {id: 57, name: 'Flowry', price: 99.99, rating: 4.8, Image: perfume12, discount: 15, category: "Perfume"},
+    {id: 58, name: 'Flowry', price: 99.99, rating: 4.8, Image: perfume13, discount: 15, category: "Perfume"},
+    {id: 59, name: 'Flowry', price: 99.99, rating: 4.8, Image: perfume14, discount: 15, category: "Perfume"},
 
 ])
 

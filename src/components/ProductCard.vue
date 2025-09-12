@@ -1,31 +1,42 @@
-<template>
-  <div class="border rounded-lg p-4">
-    <img :src="product.image" :alt="product.name" class="w-32 h-32 object-cover" />
-    <h3 class="mt-2 font-semibold">{{ product.name }}</h3>
-    <p class="text-sm text-gray-500">{{ product.price }}</p>
-
-    <!-- Add to Wishlist -->
-    <button 
-      class="mt-2 px-3 py-1 bg-pink-600 text-white rounded hover:bg-pink-500"
-      @click="addToWishlist(product)"
-    >
-      Add to Wishlist
-    </button>
-  </div>
-</template>
-
 <script setup>
-import { useWishlistStore } from '../src/stores/WishList'
+import { useAuthStore } from "@/stores/authStore";
+import { useRouter } from "vue-router";
 
-const wishlist = useWishlistStore()
-
-const props = defineProps({ 
+const props = defineProps({
   product: Object
-})
+});
 
-
+const authStore = useAuthStore();
+const router = useRouter();
 
 function addToWishlist(product) {
-  wishlist.addToWishlist(product)
+  if (!authStore.isLoggedIn()) {
+    alert("You must login to add products to wishlist.");
+    router.push("/login");
+    return;
+  }
+  console.log("Added to wishlist:", product);
+}
+
+function addToCart(product) {
+  if (!authStore.isLoggedIn()) {
+    alert("You must login to add products to cart.");
+    router.push("/login");
+    return;
+  }
+  console.log("Added to cart:", product);
 }
 </script>
+
+<template>
+  <div class="border rounded-xl p-4 shadow-md">
+    <h2 class="text-lg font-bold">{{ product.name }}</h2>
+    <p class="text-gray-500">₹{{ product.price }}</p>
+    <div class="flex gap-2 mt-3">
+      <button class="bg-blue-500 text-white px-3 py-1 rounded"
+              @click="addToCart(product)">Add to Cart</button>
+      <button class="bg-pink-500 text-white px-3 py-1 rounded"
+              @click="addToWishlist(product)">❤️ Wishlist</button>
+    </div>
+  </div>
+</template>

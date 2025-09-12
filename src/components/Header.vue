@@ -30,6 +30,14 @@
           </router-link>
         </nav>
 
+         <div class="space-x-9 flex gap-5 items-right">
+          <router-link v-if="!user" to="/login">Login</router-link>
+          <router-link v-if="!user" to="/signup">Signup</router-link>
+          <button v-if="user" @click="logout" class="bg-red-500 text-white px-3 py-1 rounded">
+            Logout
+          </button>
+         </div>
+
         <div class="flex items-center space-x-4">
           <!-- Search -->
           <form
@@ -92,7 +100,7 @@
       <div
         v-if="isMobileMenuOpen"
         class="md:hidden bg-white shadow-md rounded-b-lg px-6 py-4 space-y-4"
-      >
+       >
         <form role="search" aria-label="Mobile search">
           <label class="relative w-full">
             <input
@@ -119,6 +127,14 @@
           >
             {{ item.name }}
           </router-link>
+
+          <div class="mt-2 space-x-4">
+            <router-link v-if="!user" to="/login" class="text-sm text-gray-700 hover:text-pink-500">Login</router-link>
+            <router-link v-if="!user" to="/signup" class="text-sm text-gray-700 hover:text-pink-500">Signup</router-link>
+            <button v-if="user" @click="handleLogout" class="bg-red-500 text-white px-3 py-1 rounded text-sm">
+              Logout
+            </button>
+        </div>
         </div>
       </div>
     </section>
@@ -128,8 +144,13 @@
 <script setup>
 import { Icon } from "@iconify/vue";
 import { ref, onMounted, onUnmounted } from "vue";
-import { useCartStore } from '../stores/Cart'
-import { useWishlistStore } from '../stores/WishList'
+import { useRouter } from 'vue-router';
+import { useCartStore } from '../stores/Cart';
+import { useWishlistStore } from '../stores/WishList';
+import { useAuth } from '../composables/useAuth';
+
+const router = useRouter();      
+const { user, logout } = useAuth();
 
 const isScrolled = ref(false);
 const isMobileMenuOpen = ref(false);
@@ -157,7 +178,10 @@ onUnmounted(() => {
 // Stores
 const cart = useCartStore();
 const wishlist = useWishlistStore();
+
+// Mobile menu logout handler
+const handleLogout = () => {
+  logout();
+  router.push('/login');   // Navigate after logout
+};
 </script>
-
-
-
